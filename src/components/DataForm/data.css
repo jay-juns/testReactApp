@@ -1,0 +1,17 @@
+.post-card__wrapper {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.post-card__items {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.post-card__items:first-child {
+  margin-top: 0;
+}
+.post-card__items > p {
+  margin-left:10px;
+  font-size: 18px;
+}

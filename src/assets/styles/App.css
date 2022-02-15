@@ -1,0 +1,311 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+#root {
+  width: 100%;
+  height: 100%;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* input 기본 스타일 초기화 */
+input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+/* IE10 이상에서 input box 에 추가된 지우기 버튼 제거 */
+input::-ms-clear { display: none; }
+
+/* input type number 에서 화살표 제거 */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+/* Select box 스타일 초기화 */ 
+select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+/* IE 에서 Select box 화살표 제거 */ 
+select::-ms-expand { display: none; }
+button {
+  background-color: transparent;
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+p {
+  margin:0;
+  padding:0;
+}
+a {
+  text-decoration: none;
+  outline: none;
+  color: #333;
+}
+a:hover, a:active {
+  text-decoration: none;
+  color: #333;
+}
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 102;
+}
+.overlay.none {
+  background-color: transparent
+}
+.modal-container {
+  visibility: hidden;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90%;
+  min-height: 400px;
+  z-index: 103;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  border-radius: 20px;
+  padding: 10px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: zoomOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  transition: all 0.3s ease-out;
+}
+.modal-container.active {
+  visibility: visible;
+  opacity: 1;
+}
+.modal-container.in {
+  animation: zoomIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal-container.none-bg {
+  background-color: transparent;
+}
+.modal-container > img {
+  width: 100%;
+}
+.modal-close__btn-wrapper {
+  position: absolute;
+  right: 10px;
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.5);
+  transition: all ease-in .3s;
+}
+.modal-close__btn-wrapper:hover {
+  color: rgba(0, 0, 0, 1);
+}
+.nav__wrapper {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav__left,
+.nav__right {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.nav__right {
+  justify-content: flex-end;
+}
+.nav__left > a:last-child,
+.nav__right > a:last-child {
+  margin-right: 0;
+}
+.main {
+  width: 100%;
+  max-width: 1280px;
+  min-height: calc( 100% - ( 70px + 30px ));
+  margin: 0 auto;
+  padding-top: 70px;
+}
+
+.slick-slide img {
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer {
+  width: 100%;
+  height: 100px;
+}
+.chat-bot-btn {
+  position:fixed;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  right: 40px;
+  bottom: 35px;
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  border-radius: 50%;
+  padding: 5px;
+  transform:scale(1);
+  transition: all ease .3s;
+  overflow: hidden;
+}
+.chat-bot-btn.active,
+.chat-bot-btn:hover {
+  transform:scale(1.5);
+}
+.chat-bot-btn > svg {
+  position:absolute;
+  top:0;
+  transition: all ease-in-out .3s;
+}
+.chat-bot-btn > svg.message {
+  transform: translateY(0);
+} 
+.chat-bot-btn.active > svg.message {
+  transform: translateY(100px);
+}
+.chat-bot-btn > svg.close {
+  transform: translateY(100px);
+}
+.chat-bot-btn.active > svg.close {
+  transform: translateY(0);
+}
+.chat-container {
+  position: fixed;
+  bottom: 80px;
+  right: 36px;
+  width: 320px;
+  max-width: 100%;
+  height: 550px;
+  border-radius: 20px;
+  padding: 20px;
+  animation: zoomInBot 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  transition: all ease .3s;
+}
+.chat-inside__wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.message-container {
+  flex:1;
+  overflow-y: auto;
+}
+.message-container > div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+.message {
+  max-width:200px;
+  width: max-content;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+}
+.message > p {
+  font-size: 13px;
+  line-height: 1.4;
+}
+.message.user {
+  align-self: flex-end;
+  background-color: #618bbf;
+}
+.message.bot {
+  background-color: #939393;
+}
+.form-container {
+  display:flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: #618bbf;
+  border-radius: 0 0 20px 20px;
+  z-index: 100;
+}
+.form-container > input {
+  flex: 1;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  padding:8px 10px;
+}
+.form-container > input::placeholder {
+  font-size: 13px;
+}
+.form-container > button {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+}
+.options {
+  display: flex;
+  margin: 10px 0;
+  position: relative;
+}
+.options > p {
+  flex:1;
+  text-align: center;
+  cursor: pointer;
+}
+/* Show modal content */ 
+@keyframes zoomIn { 
+  from { 
+    transform: translate(-50%, 0) scale(0); 
+  } 
+  to { 
+    transform: translate(-50%, -50%) scale(1); 
+  } 
+}
+@keyframes zoomInBot { 
+  from { 
+    transform: translate( 0, 50%) scale(0); 
+  } 
+  to { 
+    transform: translate( 0, 0) scale(1); 
+  } 
+}
+
+@keyframes zoomOut { 
+  from { 
+    transform: translate(-50%, -50%) scale(1); 
+  } 
+  to { 
+    transform: translate(-50%, 0) scale(0); 
+  } 
+}
+
